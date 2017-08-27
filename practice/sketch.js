@@ -1,26 +1,26 @@
-var x=0;
-var speed=10;
-var r=20;
-var a=255;
-var b=255;
-var c=255;
+var button = true;
 
 function setup() {
-  createCanvas(600, 400);
+  createCanvas(600,400);
 }
 
 function draw() {
-  background(0);
-  noStroke();
-  fill(a,b,c);
-  ellipse(x, 200, r, r);
-  if (x+r/2>=width){
-    speed=-10;
-    a=a-10;
-    r=r+10;
-  } else if (x-r/2<=0){
-    speed=10;
-    c=c-10;
+	if (button){
+		background(0);
+	} else {
+		background(0,255,0);
+	}
+  noFill();
+  stroke(255);
+  
+  if (mouseX>300 && mouseX<400 && mouseY>200 && mouseY<300) {
+    fill(255,0,0);
   }
-  x=x+speed;
+  rect(300,200,100,100);
+}
+
+function mousePressed() {
+	if (mouseX>300 && mouseX<400 && mouseY>200 && mouseY<300) {
+    button = !button;
+  }
 }
