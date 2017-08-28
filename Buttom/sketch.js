@@ -1,26 +1,38 @@
 var button = true;
+var butt ={
+  x:50,
+  y:50,
+  r:30
+}
 
 function setup() {
   createCanvas(600,400);
+  background(0);
 }
 
 function draw() {
-	if (button){
-		background(0);
-	} else {
-		background(0,255,0);
-	}
   noFill();
   stroke(255);
-  
-  if (mouseX>300 && mouseX<400 && mouseY>200 && mouseY<300) {
-    fill(255,0,0);
-  }
-  rect(300,200,100,100);
+  //if (mouseX>butt.x && mouseX<butt.x+butt.r && mouseY>butt.y && mouseY<butt.y+butt.r) {
+  //  fill(255,0,0);
+  //} else {
+  //  fill(0);
+  //}
+  //rect(butt.x,butt.y,butt.r,butt.r);
 }
 
 function mousePressed() {
-	if (mouseX>300 && mouseX<400 && mouseY>200 && mouseY<300) {
-    button = !button;
+	//if (mouseX>butt.x && mouseX<butt.x+butt.r && mouseY>butt.y && mouseY<butt.y+butt.r) {
+    if (button){
+      noStroke();
+      fill(random(255),random(255),random(255));
+      ellipse(random(width),random(height), random(100),random(100));
+  } else {
+    noStroke();
+    fill(random(255),random(255),random(255));
+    rect(random(width),random(height), random(100),random(100));
   }
-}
+  button = !button;
+  }
+  
+//}
