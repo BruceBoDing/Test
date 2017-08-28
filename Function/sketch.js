@@ -1,18 +1,34 @@
+var ball={
+  x : 300,
+  y : 200,
+  xSpeed : 4,
+  ySpeed : -3,
+  r : 25
+}
+var c =0;
+var ch=10
 
-function setup() {
+function setup(){
   createCanvas(600,400);
 }
 
 function draw(){
-  background(0);
-  strokeWeight(4);
+  background(c);
   stroke(255);
-  for (var x=0; x<=mouseX; x+=50){
-    for (var y=0; y<=mouseY; y+=50){
-    fill(random(0,255),random(0,255), random(0,255));
-    ellipse(x, y, 50,50);
-    }
-    
+  strokeWeight(4);
+  noFill();
+  if (ball.x+ball.r/2>width || ball.x-ball.r/2<0){
+    ball.xSpeed= ball.xSpeed*-1;
+    c+=ch;
   }
- 
+  if (ball.y+ball.r/2>height || ball.y-ball.r/2<0){
+    ball.ySpeed = ball.ySpeed*-1;
+    c+=ch;
+  }
+  if (c>=255 || c<0) {
+  ch=ch*-1;
+  }
+  ellipse(ball.x, ball.y, ball.r, ball.r)
+  ball.x=ball.x+ball.xSpeed;
+  ball.y=ball.y+ball.ySpeed;
 }
