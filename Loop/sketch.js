@@ -1,26 +1,46 @@
+var ballX = 100;
+var ballY = 0;
+var h = 50;
 
-var color = {
-	r:0,
-	g:0,
-	b:0
-}
+//create a variable for speed
+var speedY = 0;
 
 function setup() {
-  createCanvas(600,400);
+  createCanvas(400,400);
+  smooth();
+  ellipseMode(CORNER);
+
 }
 
-function draw(){
+function draw() {
+  //clear the background and set the fill colour
   background(0);
-  strokeWeight(4);
-  stroke(255);
-  for (var x=0; x<=mouseX; x+=50){
-    for (var y=0; y<=mouseY; y+=50){
-    fill(random(0,255),random(0,255), random(0,255));
-    ellipse(x, y, 25,25);
-    }   
+  fill(255);
+  
+  //draw the circle in it's current position
+  ellipse(ballX, ballY, h,h);
+ 
+  //add a little gravity to the speed
+  speedY = speedY + 0.5;  
+  
+  //add speed to the ball's
+  ballY = ballY + speedY; 
+  
+  
+  if (ballY > height - h) {
+    // set the position to be on the floor
+    ballY = height - h;
+    // and make the y speed 90% of what it was,
+    // but in the opposite direction
+    speedY = speedY * -0.9;
+    
+    //switch the direction
+    //speedY = speedY;
   }
+  else if (ballY <= 0) { 
+    // if the ball hits the top,
+    // make it bounce off
+    speedY = -speedY;
+  }
+  
 }
-
-//function mouseIsPressed(){
-//	if 
-//}

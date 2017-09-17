@@ -4,46 +4,62 @@ function setup(){
   createCanvas(800, 600);  
 }
 
-function mouseDragged(){
+function mousePressed(){
   bubbles.push(new Bubble(mouseX, mouseY));
 }
 
 function draw(){
   background(0);
-  for (var i=0; i<bubbles.length; i++){ 
+  for (var i=bubbles.length-1; i>=0; i--){ 
     bubbles[i].display();
-    bubbles[i].move();
+    bubbles[i].jump();
+    // if (bubbles[i].isFinished()){
+    //   bubbles.splice(i,1);
+    // }
   }
 }
 
-function mousePressed(){
-  for(var i=0; i<bubbles.length; i++){
-    bubbles[i].clicked();
-  }
-}
 
 // ------------------Bubble Constructor----------------------
 
 function Bubble(x,y){
   this.x = x;
   this.y = y;
-  this.c = color(255)
-  this.life= 255;
+  //this.life= 255;
+  this.speed=0;
+  this.gravity=0.98;
+  this.bounce=-1;
   this.display = function() {
-    noStroke();
-    //strokeWeight(1);
-    fill(this.c, this.life);
+    //noStroke();
+    stroke(255);
+    strokeWeight(1);
+    fill(255, this.life);
     ellipse(this.x, this.y, 24,24);
   };
-  this.move = function(){
-    this.x=this.x+random(-1,1); 
-    this.y=this.y+random(-1,1);
-    this.life=this.life-30;
+  // this.move = function(){
+  //   this.x=this.x+random(-1,1); 
+  //   this.y=this.y+random(-1,1);
+  //   this.life--;
+  // }
+  this.jump = function(){
+    this.speed+=this.gravity;
+    this.y+=this.speed;
+    if (this.y>height-12){
+      this.y=height-12;
+      this.speed*=-0.9;
+    } 
   }
-  this.clicked= function(){
-    var d=dist(mouseX,mouseY,this.x,this.y);
-    if (d<12){
-      this.c=color(255,100);
-    }
-  }
+  // this.isFinished = function(){
+  //   if (this.life < 0) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
+  //this.clicked= function(){
+    //var d=dist(mouseX,mouseY,this.x,this.y);
+    //if (d<12){
+   //   this.c=color(255,100);
+    //}
+  //}
 }
