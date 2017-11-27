@@ -1,7 +1,7 @@
 var bubbles = [];
 
 function setup(){
-  createCanvas(800, 600);  
+  createCanvas(windowWidth, windowHeight);  
 }
 
 function mousePressed(){
@@ -13,9 +13,9 @@ function draw(){
   for (var i=bubbles.length-1; i>=0; i--){ 
     bubbles[i].display();
     bubbles[i].jump();
-    // if (bubbles[i].isFinished()){
-    //   bubbles.splice(i,1);
-    // }
+    if (bubbles[i].isDone()){
+      bubbles.splice(i,1);
+    }
   }
 }
 
@@ -48,6 +48,14 @@ function Bubble(x,y){
       this.y=height-12;
       this.speed*=-0.9;
     } 
+  }
+
+  this.isDone = function(){
+    if (this.speed=0){
+      return true;
+    } else {
+      return false;
+    }
   }
   // this.isFinished = function(){
   //   if (this.life < 0) {
