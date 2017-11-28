@@ -10,16 +10,15 @@ function toggleSong(){
 	}
 }
 
-function preload(){
-	song=loadSound("1.mp3");
-}
-
 function setup(){
   createCanvas(windowWidth, windowHeight);
+	song=loadSound("1.mp3");
   button = createButton('toggle');
   button.mousePressed(toggleSong);
-  song.play();
-  amp = new p5.Amplitude();
+}
+
+function loaded(){
+	song.play();
 }
 
 function draw(){
