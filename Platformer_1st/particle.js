@@ -29,10 +29,5 @@ function Person() {
       this.vel.y *= 0;
       this.pos.y = height;
     }
-
-    if (this.pos.x > width) {
-      this.vel.x *= -1;
-      this.pos.x = width;
-    }
   }
 }
